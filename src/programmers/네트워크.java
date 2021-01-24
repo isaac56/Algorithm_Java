@@ -2,6 +2,28 @@ package programmers;
 import java.util.*;
 
 public class 네트워크 {
+// dfs 풀이
+    public void dfs(int[] area, int [][] computers, int x, int areaNum){
+        area[x] = areaNum;
+        int[] connected = computers[x];
+        for(int i = 0; i < connected.length; i++) {
+            if(connected[i] == 1 && area[i] == 0)
+                dfs(area, computers, i, areaNum);
+        }
+    }
+
+    public int solution2(int n, int[][] computers){
+        int answer = 0;
+        int[] area = new int[n];
+        for(int i = 0; i < n; i++) {
+            if(area[i] == 0)
+                dfs(area, computers, i, ++answer);
+        }
+
+        return answer;
+    }
+
+// union-find 풀이
     public int getParent(int[] parent, int x){
         if(parent[x] == x)
             return x;
