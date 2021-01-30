@@ -61,9 +61,6 @@ public class 셔틀버스 {
                 j++;
             }
             if(i == n-1){
-                if(j == 0) {
-                    return start.toString();
-                }
                 if(num < m) {
                     return start.toString();
                 }
