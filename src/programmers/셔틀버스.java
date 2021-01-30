@@ -52,22 +52,23 @@ public class 셔틀버스 {
         for(int i = 0; i < n; i++) {
             int num = 0;
             int j = curIdx;
-            for(;j < timetable.length && num < m; j++) {
+            while(j < timetable.length && num < m){
                 Time curTime = new Time(timetable[j]);
                 if(curTime.compareTo(start) > 0){
                     break;
                 }
                 num++;
+                j++;
             }
             if(i == n-1){
                 if(j == 0) {
                     return start.toString();
                 }
-                Time ret = new Time(timetable[j-1]);
                 if(num < m) {
                     return start.toString();
                 }
                 else{
+                    Time ret = new Time(timetable[j-1]);
                     ret.addMin(-1);
                     return ret.toString();
                 }
