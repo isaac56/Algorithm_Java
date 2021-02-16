@@ -3,43 +3,43 @@ package programmers;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Locale;
 
 public class 매칭점수 {
     class Site{
         double basic;
         double linkScore;
-        List<String> linkes;
+        List<String> links;
         int linkNum;
 
-        public Site(double basic, List<String> linkes){
+        public Site(double basic, List<String> links){
             this.basic = basic;
-            this.linkes = linkes;
-            this.linkNum = linkes.size();
+            this.links = links;
+            this.linkNum = links.size();
         }
     }
     public int solution(String word, String[] pages) {
         word = word.toLowerCase();
 
+        List<String> urls = new ArrayList<>();
         HashMap<String, Site> hm = new HashMap<>();
         for(int i = 0; i < pages.length; i++) {
             pages[i] = pages[i].toLowerCase();
-            hm.put(getURL(pages[i]),new Site(getBasicScore(pages[i],word),getLink(pages[i])));
+            String url = getURL(pages[i]);
+            urls.add(url);
+            hm.put(url,new Site(getBasicScore(pages[i],word),getLink(pages[i])));
         }
-        for(int i = 0; i < pages.length; i++) {
-            Site site = hm.get(getURL(pages[i]));
-            for(String link : site.linkes){
+        for(String url : urls){
+            Site site = hm.get(url);
+            for(String link : site.links){
                 Site linkSite = hm.get(link);
                 if(linkSite != null)
                     linkSite.linkScore += site.basic / (double)site.linkNum;
             }
         }
-
         int answer = 0;
         double maxScore = 0;
-        for(int i = 0; i < pages.length; i++) {
-            Site site = hm.get(getURL(pages[i]));
-            // System.out.println(i +"번째: 기본="+site.basic +", 링크점수=" + site.linkScore);
+        for(int i = 0; i < urls.size(); i++) {
+            Site site = hm.get(urls.get(i));
             if(maxScore < site.basic + site.linkScore){
                 maxScore = site.basic + site.linkScore;
                 answer = i;
@@ -60,10 +60,9 @@ public class 매칭점수 {
 
     List<String> getLink(String page){
         List<String> ret = new ArrayList<>();
-        String search = "<a href=";
         int searchStart = 0;
         while(true){
-            int href = page.indexOf(search,searchStart);
+            int href = page.indexOf("<a href=",searchStart);
             if(href == -1)
                 break;
 
