@@ -5,7 +5,7 @@ import java.util.*;
 public class 광고삽입 {
     public String solution(String play_time, String adv_time, String[] logs) {
         int playTime = getSecond(play_time);
-        int[] stackCount = new int[playTime + 100];
+        int[] viewerCount = new int[playTime + 100];
         int[] startEndCount = new int[playTime + 100];
         for (String log : logs) {
             int[] startEnd = getStartEnd(log);
@@ -16,19 +16,19 @@ public class 광고삽입 {
         int viewer = 0;
         for (int i = 0; i <= playTime; i++) {
             viewer += startEndCount[i];
-            stackCount[i] = viewer;
+            viewerCount[i] = viewer;
         }
 
         int advTime = getSecond(adv_time);
         long curStackTime = 0;
         for (int i = 0; i < advTime; i++) {
-            curStackTime += stackCount[i];
+            curStackTime += viewerCount[i];
         }
         long maxStackTime = curStackTime;
         String answer = "00:00:00";
         for (int i = advTime; i < playTime; i++) {
-            curStackTime -= stackCount[i - advTime];
-            curStackTime += stackCount[i];
+            curStackTime -= viewerCount[i - advTime];
+            curStackTime += viewerCount[i];
             if (curStackTime > maxStackTime) {
                 maxStackTime = curStackTime;
                 answer = getTime(i - advTime + 1);
