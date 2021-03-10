@@ -1,42 +1,35 @@
 package programmers;
+
 import java.util.*;
+
 public class 프린터 {
     class Document {
-        int location;
+        int idx;
         int priority;
-        public Document (int loc, int p) {
-            this.location = loc;
-            this.priority = p;
+
+        Document(int idx, int priority) {
+            this.idx = idx;
+            this.priority = priority;
         }
     }
 
     public int solution(int[] priorities, int location) {
-        int[] priorityNum = new int[10];
-        int maxPriority = 0;
-        Queue<Document> waiting = new LinkedList<>();
-        for(int i = 0; i < priorities.length; i++) {
-            waiting.add(new Document(i, priorities[i]));
-            priorityNum[priorities[i]]++;
-            if(maxPriority < priorities[i]) maxPriority = priorities[i];
+        Queue<Document> queue = new LinkedList<>();
+        for (int i = 0; i < priorities.length; i++) {
+            queue.add(new Document(i, priorities[i]));
         }
-
-        int order = 0;
-        while(!waiting.isEmpty()) {
-            if(maxPriority > waiting.element().priority)
-            {
-                waiting.add(waiting.element());
-                waiting.remove();
+        Arrays.sort(priorities);
+        int maxPriorityIdx = priorities.length - 1;
+        int printedOrder = 0;
+        while (maxPriorityIdx >= 0) {
+            while (queue.element().priority < priorities[maxPriorityIdx]) {
+                queue.add(queue.remove());
             }
-            else {
-                order++;
-                if(waiting.element().location == location)
-                    return order;
-
-                priorityNum[waiting.element().priority]--;
-                while(priorityNum[maxPriority] == 0) {
-                    maxPriority--;
-                }
-                waiting.remove();
+            printedOrder++;
+            maxPriorityIdx--;
+            Document printed = queue.remove();
+            if (printed.idx == location) {
+                return printedOrder;
             }
         }
 
