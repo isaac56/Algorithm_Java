@@ -1,4 +1,4 @@
-package leetcode;
+package basic;
 
 public class Floyd_warshall {
     //fee[i][j]는 i에서부터 j까지 직접 가는 비용 입니다.
