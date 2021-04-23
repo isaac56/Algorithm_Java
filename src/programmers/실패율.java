@@ -40,12 +40,7 @@ public class 실패율 {
 
         Collections.sort(answerList);
 
-        int[] answer = new int[N];
-        for (int i = 0; i < N; i++) {
-            answer[i] = answerList.get(i).stage;
-        }
-
-        return answer;
+        return answerList.stream().mapToInt(x -> x.stage).toArray();
     }
 
     public double getFailValue(int stage, int[] userNum) {
@@ -60,7 +55,7 @@ public class 실패율 {
         if (allUser == 0) {
             return 0;
         }
-        
+
         return tryingUser / allUser;
     }
 }
