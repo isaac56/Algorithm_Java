@@ -19,13 +19,13 @@ public class 순위 {
         void addUp(Node node) {
             this.upSet.addAll(node.upSet);
             this.upSet.add(node);
-            node.downSet.addAll(this.downSet);
-            node.downSet.add(this);
-
-            for (Node temp : node.downSet) {
+            for (Node temp : this.downSet) {
                 temp.upSet.addAll(node.upSet);
                 temp.upSet.add(node);
             }
+            
+            node.downSet.addAll(this.downSet);
+            node.downSet.add(this);
             for (Node temp : node.upSet) {
                 temp.downSet.addAll(this.downSet);
                 temp.downSet.add(this);
