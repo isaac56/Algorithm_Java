@@ -1,6 +1,6 @@
 package sort;
 
-public class InsertionsSort {
+public class InsertionsSort implements Sort {
     public void sort(int[] arr) {
         for (int i = 1; i < arr.length - 1; i++) {
             int temp = arr[i];

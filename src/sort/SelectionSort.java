@@ -1,6 +1,6 @@
 package sort;
 
-public class SelectionSort {
+public class SelectionSort implements Sort {
     public void sort(int[] arr) {
         for (int i = 0; i < arr.length - 1; i++) {
             int minIndex = i;
@@ -9,7 +9,7 @@ public class SelectionSort {
                     minIndex = j;
                 }
             }
-            
+
             int temp = arr[i];
             arr[i] = arr[minIndex];
             arr[minIndex] = temp;
