@@ -16,20 +16,22 @@ class SortTest {
     }
 
     @Test
-    void BubbleSort() {
-        new BubbleSort().sort(array);
-        Assertions.assertTrue(Arrays.equals(array, answer));
+    void bubbleSort() {
+        sortTest(new BubbleSort(), array, answer);
     }
 
     @Test
-    void SelectionSort() {
-        new SelectionSort().sort(array);
-        Assertions.assertTrue(Arrays.equals(array, answer));
+    void selectionSort() {
+        sortTest(new SelectionSort(), array, answer);
     }
 
     @Test
-    void InsertionsSort() {
-        new InsertionsSort().sort(array);
+    void insertionsSort() {
+        sortTest(new InsertionSort(), array, answer);
+    }
+
+    private void sortTest(Sort sort, int[] array, int[] answer) {
+        sort.sort(array);
         Assertions.assertTrue(Arrays.equals(array, answer));
     }
 }
