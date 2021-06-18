@@ -20,4 +20,10 @@ class SortTest {
         new BubbleSort().sort(array);
         Assertions.assertTrue(Arrays.equals(array, answer));
     }
+
+    @Test
+    void SelectionSort() {
+        new SelectionSort().sort(array);
+        Assertions.assertTrue(Arrays.equals(array, answer));
+    }
 }
