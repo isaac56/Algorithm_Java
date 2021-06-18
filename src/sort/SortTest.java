@@ -26,4 +26,10 @@ class SortTest {
         new SelectionSort().sort(array);
         Assertions.assertTrue(Arrays.equals(array, answer));
     }
+
+    @Test
+    void InsertionsSort() {
+        new InsertionsSort().sort(array);
+        Assertions.assertTrue(Arrays.equals(array, answer));
+    }
 }
