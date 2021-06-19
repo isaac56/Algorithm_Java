@@ -35,6 +35,12 @@ class SortTest {
         sortTest(new QuickSort(), array, answer);
     }
 
+    @Test
+    void mergeSort() {
+        sortTest(new MergeSort(), array, answer);
+    }
+
+
     private void sortTest(Sort sort, int[] array, int[] answer) {
         sort.sort(array);
         Assertions.assertTrue(Arrays.equals(array, answer));
