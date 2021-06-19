@@ -30,6 +30,11 @@ class SortTest {
         sortTest(new InsertionSort(), array, answer);
     }
 
+    @Test
+    void quickSort() {
+        sortTest(new QuickSort(), array, answer);
+    }
+
     private void sortTest(Sort sort, int[] array, int[] answer) {
         sort.sort(array);
         Assertions.assertTrue(Arrays.equals(array, answer));
