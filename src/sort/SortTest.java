@@ -40,6 +40,10 @@ class SortTest {
         sortTest(new MergeSort(), array, answer);
     }
 
+    @Test
+    void heapSort() {
+        sortTest(new HeapSort(), array, answer);
+    }
 
     private void sortTest(Sort sort, int[] array, int[] answer) {
         sort.sort(array);
