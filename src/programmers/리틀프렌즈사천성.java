@@ -57,15 +57,7 @@ public class 리틀프렌즈사천성 {
                 map[l2.row][l2.col] = '.';
                 tiles.append(character);
 
-                String result = dfs(map, characterLocation, tiles, characters, visited);
-                if (result != null) {
-                    return result;
-                }
-
-                tiles.setLength(tiles.length() - 1);
-                map[l1.row][l1.col] = character;
-                map[l2.row][l2.col] = character;
-                visited[i] = false;
+                return dfs(map, characterLocation, tiles, characters, visited);
             }
         }
 
